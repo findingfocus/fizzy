@@ -64,40 +64,18 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "fizzy_production"
 
   config.action_mailer.perform_caching = false
-
-
-
-
-
-
-
-# config/environments/production.rb (Around line 70)
-
-# Only configure Action Mailer if we are NOT running the assets precompile task.
-if $PROGRAM_NAME.exclude?('assets:precompile')
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              ENV.fetch("SMTP_ADDRESS"),
-    port:                 ENV.fetch("SMTP_PORT"),
-    domain:               ENV.fetch("SMTP_DOMAIN"),
-    user_name:            ENV.fetch("SMTP_USERNAME"),
-    password:             ENV.fetch("SMTP_PASSWORD"),
-    authentication:       :login,
-    enable_starttls_auto: true, # Often needed for port 587, but safe to include
-    ssl:                  true, # Crucial for port 465 (SMTPS)
-    open_timeout:         5,
-    read_timeout:         5
+    address:              'smtp.mailgun.org', # Or smtp.eu.mailgun.org for EU region
+    port:                 587,
+    domain:               ENV.fetch('MAILGUN_DOMAIN', 'your-domain-name.com'),
+    user_name:            ENV.fetch('MAILGUN_SMTP_LOGIN', 'postmaster@your-domain-name.com'),
+    password:             ENV.fetch('MAILGUN_SMTP_PASSWORD', 'your-smtp-password'),
+    authentication:       'plain',
+    enable_starttls_auto: true
   }
 
-  config.action_mailer.default_url_options = {
-    host: ENV.fetch("APP_HOST").sub("https://", ""),
-    protocol: "https"
-  }
-
-  config.action_mailer.default_options = {
-    from: ENV.fetch("SMTP_FROM")
-  }
-end
+  config.action_mailer.default_url_options = { host: 'fizzy.findingfocus.dev' }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
