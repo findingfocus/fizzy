@@ -46,6 +46,9 @@ env:
     - SMTP_DOMAIN
     - SMTP_USERNAME
     - SMTP_PASSWORD
+    - SMTP_FROM
+    - VAPID_PRIVATE_KEY
+    - VAPID_PUBLIC_KEY
   clear:
     RAILS_ENV: production
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
@@ -103,22 +106,22 @@ ssh:
   user: fizzyfocus
 
 # Use accessory services (secrets come from .kamal/secrets).
-# accessories:
-#   db:
-#     image: mysql:8.0
-#     host: 192.168.0.2
+accessories:
+  db:
+    image: mysql:8.0
+    host: 155.138.210.159
 #     # Change to 3306 to expose port to the world instead of just local network.
-#     port: "127.0.0.1:3306:3306"
-#     env:
-#       clear:
-#         MYSQL_ROOT_HOST: '%'
-#       secret:
-#         - MYSQL_ROOT_PASSWORD
-#     files:
-#       - config/mysql/production.cnf:/etc/mysql/my.cnf
-#       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-#     directories:
-#       - data:/var/lib/mysql
+    port: "127.0.0.1:3306:3306"
+    env:
+      clear:
+        MYSQL_ROOT_HOST: '%'
+      secret:
+        - MYSQL_ROOT_PASSWORD
+    files:
+      - config/mysql/production.cnf:/etc/mysql/my.cnf
+      - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
+    directories:
+      - data:/var/lib/mysql
 #   redis:
 #     image: valkey/valkey:8
 #     host: 192.168.0.2

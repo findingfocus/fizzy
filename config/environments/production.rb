@@ -65,6 +65,34 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+# --- Action Mailer SMTP Configuration ---
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              ENV.fetch("SMTP_ADDRESS"),
+    port:                 ENV.fetch("SMTP_PORT"),
+    domain:               ENV.fetch("SMTP_DOMAIN"),
+    user_name:            ENV.fetch("SMTP_USERNAME"),
+    password:             ENV.fetch("SMTP_PASSWORD"),
+    authentication:       :login,
+    enable_starttls_auto: true, # Often needed for port 587, but safe to include
+    ssl:                  true, # Crucial for port 465 (SMTPS)
+    open_timeout:         5,
+    read_timeout:         5
+  }
+
+  # Set the default URL options for mailer URLs (e.g., links in password reset emails)
+  config.action_mailer.default_url_options = {
+    host: ENV.fetch("APP_HOST").sub("https://", ""), # Remove protocol for host setting
+    protocol: "https"
+  }
+
+  # Set the default 'From' address
+  config.action_mailer.default_options = {
+    from: ENV.fetch("SMTP_FROM")
+  }
+
+
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
