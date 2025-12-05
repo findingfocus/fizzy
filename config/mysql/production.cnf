@@ -1,0 +1,12 @@
+# config/mysql/production.cnf
+
+[mysqld]
+# This file is used to provide production-specific configuration
+# to the MySQL server running inside the Docker container.
+
+# You can add performance-tuning settings here if needed,
+# but a minimal file is often enough to pass the deployment check.
+
+# Example basic settings (optional, but harmless):
+# character-set-server=utf8mb4
+# collation-server=utf8mb4_unicode_ci
