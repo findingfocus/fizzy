@@ -49,6 +49,8 @@ env:
     - SMTP_FROM
     - VAPID_PRIVATE_KEY
     - VAPID_PUBLIC_KEY
+    - MYSQL_PASSWORD
+    - APP_HOST
   clear:
     RAILS_ENV: production
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
@@ -63,7 +65,7 @@ env:
 
     # Match this to any external database server to configure Active Record correctly
     # Use fizzy-db for a db accessory server on same machine via local kamal docker network.
-    # DB_HOST: 192.168.0.2
+    DB_HOST: fizzy-db
 
     # Log everything from Rails
     # RAILS_LOG_LEVEL: debug
@@ -97,9 +99,16 @@ builder:
   # # Pass arguments and secrets to the Docker build process
   # args:
   #   RUBY_VERSION: ruby-3.4.7
-  # secrets:
+  secrets:
   #   - GITHUB_TOKEN
-  #   - RAILS_MASTER_KEY
+    - RAILS_MASTER_KEY
+    - SMTP_ADDRESS
+    - SMTP_FROM
+    - SMTP_PORT
+    - SMTP_USERNAME
+    - SMTP_PASSWORD
+    - SMTP_DOMAIN
+    - APP_HOST
 
 # Use a different ssh user than root
 ssh:
@@ -115,8 +124,10 @@ accessories:
     env:
       clear:
         MYSQL_ROOT_HOST: '%'
+        MYSQL_HOST: fizzy-db
       secret:
         - MYSQL_ROOT_PASSWORD
+        - MYSQL_PASSWORD
     files:
       - config/mysql/production.cnf:/etc/mysql/my.cnf
       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
