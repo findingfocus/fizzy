@@ -46,6 +46,10 @@ env:
     - SMTP_DOMAIN
     - SMTP_USERNAME
     - SMTP_PASSWORD
+    - MAILGUN_DOMAIN
+    - MAILGUN_SMTP_LOGIN
+    - MAILGUN_SMTP_PASSWORD
+
   clear:
     RAILS_ENV: production
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.

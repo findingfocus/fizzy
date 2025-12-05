@@ -64,6 +64,18 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "fizzy_production"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.mailgun.org', # Or smtp.eu.mailgun.org for EU region
+    port:                 587,
+    domain:               ENV.fetch('MAILGUN_DOMAIN', 'your-domain-name.com'),
+    user_name:            ENV.fetch('MAILGUN_SMTP_LOGIN', 'postmaster@your-domain-name.com'),
+    password:             ENV.fetch('MAILGUN_SMTP_PASSWORD', 'your-smtp-password'),
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+
+  config.action_mailer.default_url_options = { host: 'fizzy.findingfocus.dev' }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
