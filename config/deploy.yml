@@ -66,6 +66,7 @@ env:
     # Match this to any external database server to configure Active Record correctly
     # Use fizzy-db for a db accessory server on same machine via local kamal docker network.
     DB_HOST: fizzy-db
+    MYSQL_HOST: fizzy-db # <-- Ensures your database.yml finds the host
 
     # Log everything from Rails
     # RAILS_LOG_LEVEL: debug

@@ -65,11 +65,20 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-# --- Action Mailer SMTP Configuration ---
+
+
+
+
+
+
+# config/environments/production.rb (Around line 70)
+
+# Only configure Action Mailer if we are NOT running the assets precompile task.
+if $PROGRAM_NAME.exclude?('assets:precompile')
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              ENV.fetch("SMTP_ADDRESS"),
-    port:                 ENV.fetch("SMTP_PORT"),
+    address:              ENV.fetch("SMTP_ADDRESS"),
+    port:                 ENV.fetch("SMTP_PORT"),
     domain:               ENV.fetch("SMTP_DOMAIN"),
     user_name:            ENV.fetch("SMTP_USERNAME"),
     password:             ENV.fetch("SMTP_PASSWORD"),
@@ -80,18 +89,15 @@ Rails.application.configure do
     read_timeout:         5
   }
 
-  # Set the default URL options for mailer URLs (e.g., links in password reset emails)
   config.action_mailer.default_url_options = {
-    host: ENV.fetch("APP_HOST").sub("https://", ""), # Remove protocol for host setting
+    host: ENV.fetch("APP_HOST").sub("https://", ""),
     protocol: "https"
   }
 
-  # Set the default 'From' address
   config.action_mailer.default_options = {
     from: ENV.fetch("SMTP_FROM")
   }
-
-
+end
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
