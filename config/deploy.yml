@@ -41,8 +41,8 @@ env:
 registry:
   server: docker.io  # Explicitly set to Docker Hub (or just remove server if default works)
   username: findingfocusdev/fizzy  # Your Docker Hub username (from your image name in logs)
-  password: KAMAL_REGISTRY_PASSWORD
-  # password_stdin: true  # Recommended for security
+  password_stdin: true
+  local_push: false
 
 
 # Handy aliases for interacting with your deployment. For eaxmple: `bin/kamal console` will connect to a
