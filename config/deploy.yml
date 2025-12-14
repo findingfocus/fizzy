@@ -28,6 +28,7 @@ env:
     - SMTP_USERNAME
     - SMTP_PASSWORD
     - DOCKER_HUB_PASSWORD
+    - KAMAL_REGISTRY_PASSWORD
   clear:
     MAILER_FROM_ADDRESS: fizzy@.mg.tashio.dev # The email "from" address that Fizzy sends email from
     SMTP_ADDRESS: mg.tashio.dev # The SMTP server you'll use to send email
@@ -41,11 +42,11 @@ env:
 registry:
   server: docker.io  # Explicitly set to Docker Hub (or just remove server if default works)
   username: findingfocusdev/fizzy  # Your Docker Hub username (from your image name in logs)
-  password_stdin: true
-  local_push: false
+  password: 
+    - KAMAL_REGISTRY_PASSWORD
 
 
-# Handy aliases for interacting with your deployment. For eaxmple: `bin/kamal console` will connect to a
+# Handy aliasies for interacting with your deployment. For eaxmple: `bin/kamal console` will connect to a
 # Rails console in production.
 aliases:
   console: app exec --interactive --reuse "bin/rails console"
