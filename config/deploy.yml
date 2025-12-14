@@ -1,6 +1,6 @@
 # Name of this app
 service: fizzy
-image: fizzy
+image: findingfocusdev/fizzy
 
 
 #-- About your deployment --#
@@ -8,16 +8,16 @@ image: fizzy
 # Where to deploy fizzy
 servers:
   web:
-    - fizzy.example.com  # Set your server name here
+    - 216.128.140.9  # Set your server name here
 
 # How you connect to your server
 ssh:
-  user: root  # If you use a different username to SSH to your server, specify it here
+  user: findingfocus # If you use a different username to SSH to your server, specify it here
 
 # Automatic SSL
 proxy:
   ssl: true                # Set this to false if you *don't* want SSL
-  host: fizzy.example.com  # Set your server name here to use automatic SSL
+  host: fizzy.tashio.dev  # Set your server name here to use automatic SSL
 
 # Your application configuration (secrets come from .kamal/secrets).
 env:
@@ -27,9 +27,10 @@ env:
     - VAPID_PRIVATE_KEY
     - SMTP_USERNAME
     - SMTP_PASSWORD
+    - DOCKER_HUB_PASSWORD
   clear:
-    MAILER_FROM_ADDRESS: support@example.com # The email "from" address that Fizzy sends email from
-    SMTP_ADDRESS: mail.example.com # The SMTP server you'll use to send email
+    MAILER_FROM_ADDRESS: fizzy@.mg.tashio.dev # The email "from" address that Fizzy sends email from
+    SMTP_ADDRESS: mg.tashio.dev # The SMTP server you'll use to send email
     MULTI_TENANT: false # Set to true to allow multiple accounts to sign up
     SOLID_QUEUE_IN_PUMA: true # Run background jobs in the app container
 
@@ -38,7 +39,11 @@ env:
 
 # Use a local registry to deploy
 registry:
-  server: localhost:5555
+  server: docker.io  # Explicitly set to Docker Hub (or just remove server if default works)
+  username: findingfocusdev/fizzy  # Your Docker Hub username (from your image name in logs)
+  password: KAMAL_REGISTRY_PASSWORD
+  # password_stdin: true  # Recommended for security
+
 
 # Handy aliases for interacting with your deployment. For eaxmple: `bin/kamal console` will connect to a
 # Rails console in production.
