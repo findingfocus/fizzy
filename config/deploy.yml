@@ -27,7 +27,6 @@ env:
     - VAPID_PRIVATE_KEY
     - SMTP_USERNAME
     - SMTP_PASSWORD
-    - DOCKER_HUB_PASSWORD
     - KAMAL_REGISTRY_PASSWORD
   clear:
     MAILER_FROM_ADDRESS: fizzy@.mg.tashio.dev # The email "from" address that Fizzy sends email from
