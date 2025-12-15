@@ -29,6 +29,8 @@ env:
     - SMTP_USERNAME
     - SMTP_PASSWORD
     - KAMAL_REGISTRY_PASSWORD
+    - SMTP_PORT
+    - SMTP_DOMAIN
   clear:
     MAILER_FROM_ADDRESS: fizzy@.mg.tashio.dev # The email "from" address that Fizzy sends email from
     SMTP_ADDRESS: mg.tashio.dev # The SMTP server you'll use to send email
