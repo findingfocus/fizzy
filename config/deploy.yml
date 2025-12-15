@@ -15,8 +15,8 @@ ssh:
   user: findingfocus # If you use a different username to SSH to your server, specify it here
 
 # Automatic SSL
-proxy:
-  ssl: true                # Set this to false if you *don't* want SSL
+proxy: 
+  ssl: false                # Set this to false if you *don't* want SSL
   host: fizzy.tashio.dev  # Set your server name here to use automatic SSL
 
 # Your application configuration (secrets come from .kamal/secrets).
