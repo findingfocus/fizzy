@@ -33,7 +33,7 @@ env:
     - SMTP_DOMAIN
   clear:
     MAILER_FROM_ADDRESS: fizzy@.mg.tashio.dev # The email "from" address that Fizzy sends email from
-    SMTP_ADDRESS: mg.tashio.dev # The SMTP server you'll use to send email
+    SMTP_ADDRESS: smtp.mailgun.org # The SMTP server you'll use to send email
     MULTI_TENANT: false # Set to true to allow multiple accounts to sign up
     SOLID_QUEUE_IN_PUMA: true # Run background jobs in the app container
 
