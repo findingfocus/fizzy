@@ -41,9 +41,8 @@ env:
 registry:
   server: docker.io  # Explicitly set to Docker Hub (or just remove server if default works)
   username: findingfocusdev # Your Docker Hub username (from your image name in logs)
-  password: 
+  password:
     - KAMAL_REGISTRY_PASSWORD
-
 
 # Handy aliasies for interacting with your deployment. For eaxmple: `bin/kamal console` will connect to a
 # Rails console in production.
