@@ -8,15 +8,16 @@ image: findingfocusdev/fizzy
 # Where to deploy fizzy
 servers:
   web:
-    - 216.128.140.9  # Set your server name here
+    # - 216.128.140.9  # Set your server name here
+    - 155.138.210.159
 
 # How you connect to your server
 ssh:
-  user: findingfocus # If you use a different username to SSH to your server, specify it here
+  user: fizzyfocus # If you use a different username to SSH to your server, specify it here
 
 # Automatic SSL
 proxy: 
-  ssl: false                # Set this to false if you *don't* want SSL
+  ssl: true                # Set this to false if you *don't* want SSL
   host: fizzy.tashio.dev  # Set your server name here to use automatic SSL
 
 # Your application configuration (secrets come from .kamal/secrets).
