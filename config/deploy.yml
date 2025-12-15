@@ -40,7 +40,7 @@ env:
 # Use a local registry to deploy
 registry:
   server: docker.io  # Explicitly set to Docker Hub (or just remove server if default works)
-  username: findingfocusdev/fizzy  # Your Docker Hub username (from your image name in logs)
+  username: findingfocusdev # Your Docker Hub username (from your image name in logs)
   password: 
     - KAMAL_REGISTRY_PASSWORD
 
